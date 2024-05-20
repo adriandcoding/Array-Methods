@@ -81,7 +81,7 @@ a) Queremos extraer la lista de paciente que están asignados a la especialidad 
 const obtenPacientesAsignadosAPediatria = (
   pacientes: Pacientes[]
 ): Pacientes[] => {
-return pacientes.filter((paciente) => paciente.especialidad === "Pediatra");
+  return pacientes.filter((paciente) => paciente.especialidad === "Pediatra");
 
 };
 console.log(obtenPacientesAsignadosAPediatria(pacientes));
@@ -90,10 +90,10 @@ console.log(obtenPacientesAsignadosAPediatria(pacientes));
 const obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios = (
   pacientes: Pacientes[]
 ): Pacientes[] => {
-    return pacientes.filter(
-      (paciente) => paciente.especialidad === "Pediatra" && paciente.edad < 10
-    );
-  
+  return pacientes.filter(
+    (paciente) => paciente.especialidad === "Pediatra" && paciente.edad < 10
+  );
+
 };
 console.log(obtenPacientesAsignadosAPediatriaYMenorDeDiezAnios(pacientes));
 /*APARTADO 2
@@ -101,10 +101,10 @@ Queremos activar el protocolo de urgencia si cualquiera de los pacientes tiene u
 Es decir, crear una función que devuelve true/false dependiendo si se da la condición, algo así como:
 */
 const activarProtocoloUrgencia = (pacientes: Pacientes[]): boolean => {
-    return pacientes.some(
-      (paciente) =>
-        paciente.frecuenciaCardiaca > 100 || paciente.temperatura > 39
-    );
+  return pacientes.some(
+    (paciente) =>
+      paciente.frecuenciaCardiaca > 100 || paciente.temperatura > 39
+  );
 
 };
 console.log(activarProtocoloUrgencia(pacientes));
@@ -115,26 +115,26 @@ El pediatra no puede atender hoy a los pacientes, queremos reasignar los pacient
 const reasignaPacientesAMedicoFamilia = (
   pacientes: Pacientes[]
 ): Pacientes[] => {
-    return pacientes.map((paciente) => {
-      if (paciente.especialidad === "Pediatra") {
-        paciente.especialidad = "Medico de familia";
+  return pacientes.map((paciente) => {
+    if (paciente.especialidad === "Pediatra") {
+      return {
+        ...paciente,
+        especialidad: "Medico de familia",
       }
-      return paciente;
-    });
- 
+    }
+    return paciente
+  });
 };
 console.log(reasignaPacientesAMedicoFamilia(pacientes));
-
-
 /*APARTADO 4
 Queremos saber si podemos mandar al Pediatra a casa (si no tiene pacientes asignados), comprobar si en la lista hay algún paciente asignado a pediatría
 */
 
 const HayPacientesDePediatria = (pacientes: Pacientes[]): boolean => {
-    return pacientes.some(
-      (paciente) => paciente.especialidad === "Pediatra"
-    );
- 
+  return pacientes.some(
+    (paciente) => paciente.especialidad === "Pediatra"
+  );
+
 };
 console.log(HayPacientesDePediatria(pacientes))
 /*APARTADO 5
@@ -149,17 +149,17 @@ interface NumeroPacientesPorEspecialidad {
 const cuentaPacientesPorEspecialidad = (
   pacientes: Pacientes[]
 ): NumeroPacientesPorEspecialidad => {
-    return {
-      medicoDeFamilia: pacientes.filter(
-        (paciente) => paciente.especialidad === "Medico de familia"
-      ).length,
-      pediatria: pacientes.filter(
-        (paciente) => paciente.especialidad === "Pediatra"
-      ).length,
-      cardiologia: pacientes.filter(
-        (paciente) => paciente.especialidad === "Cardiólogo"
-      ).length,
-    };
- 
+  return {
+    medicoDeFamilia: pacientes.filter(
+      (paciente) => paciente.especialidad === "Medico de familia"
+    ).length,
+    pediatria: pacientes.filter(
+      (paciente) => paciente.especialidad === "Pediatra"
+    ).length,
+    cardiologia: pacientes.filter(
+      (paciente) => paciente.especialidad === "Cardiólogo"
+    ).length,
+  };
+
 };
 console.log(cuentaPacientesPorEspecialidad(pacientes));
